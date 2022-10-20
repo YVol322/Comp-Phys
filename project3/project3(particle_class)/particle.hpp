@@ -5,8 +5,8 @@
 class particle
 {
     protected:
-        double q, m;
-        arma::vec r, v;
+        double q_, m_;
+        arma::vec r_, v_;
     
     public:
         particle(double q, double m, arma::vec r, arma::vec v);
