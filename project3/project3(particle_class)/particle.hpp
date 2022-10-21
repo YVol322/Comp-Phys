@@ -3,13 +3,18 @@
 #include <armadillo>
 
 class particle
-{
-    protected:
+{    
+    public:
         double q_, m_;
         arma::vec r_, v_;
-    
-    public:
+        
         particle(double q, double m, arma::vec r, arma::vec v);
+
+        double charge();
+        double mass();
+        arma::vec coordinates();
+        arma::vec velocity();
+        
 };
 
 #endif
