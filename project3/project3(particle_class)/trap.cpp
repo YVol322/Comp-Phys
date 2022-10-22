@@ -14,11 +14,6 @@ void trap::add_particle(particle particle_input)
     particles.push_back(particle_input);
 }
 
-int trap::size()
-{
-    return particles.size();
-}
-
 arma::vec trap::external_E_field(arma::vec r)
 {
     E.set_size(3);
@@ -37,4 +32,15 @@ arma::vec trap::external_B_field()
     B(1) = 0;
     B(2) = B0_in;
     return B;
+}
+
+arma::vec trap::total_force_external()
+{
+    F_ext.set_size(3);
+
+    F_ext(0) = particles[0].q_ * E(0) + particles[0].q_ * particles[0].v_(1) * B(2);
+    F_ext(1) = particles[0].q_ * E(1) + particles[0].q_ * particles[0].v_(0) * B(2);
+    F_ext(2) = particles[0].q_ * E(2);
+
+    return F_ext;
 }

@@ -13,17 +13,18 @@ class trap
 
         std::vector<particle> particles;
 
-        arma::vec E, B;
+        arma::vec E, B, F_ext;
 
         trap(double B0, double V0, double d);
 
         void add_particle(particle particle_input);
 
-        int size();
-
         arma::vec external_E_field(arma::vec r);
 
-        arma::vec external_B_field();  
+        arma::vec external_B_field();
+
+        arma::vec total_force_external();
+
 
 
 };

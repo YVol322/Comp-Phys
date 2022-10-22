@@ -1,5 +1,6 @@
 #include <iostream>
 #include <armadillo>
+#include <vector>
 #include "trap.hpp"
 #include "trap.cpp"
 
@@ -25,9 +26,13 @@ int main()
     trap t = trap(B, V, d);
 
     t.add_particle(p);
-    t.B = t.external_E_field(r);
+    
+    t.external_B_field();
+    t.external_E_field(r);
+    t.total_force_external();
 
-    std::cout << t.E << std::endl;
+
+    std::cout << t.F_ext << std::endl;
 
     return 0;
 }
