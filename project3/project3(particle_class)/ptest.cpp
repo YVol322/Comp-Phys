@@ -26,5 +26,7 @@ int main()
 
     t.add_particle(p);
 
+    std::cout << t.size() << std::endl;
+
     return 0;
 }

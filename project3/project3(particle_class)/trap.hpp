@@ -16,6 +16,8 @@ class trap
         trap(double B0, double V0, double d);
 
         void add_particle(particle particle_input);
+
+        int size();
 };
 
 

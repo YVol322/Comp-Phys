@@ -13,3 +13,8 @@ void trap::add_particle(particle particle_input)
 {
     particles.push_back(particle_input);
 }
+
+int trap::size()
+{
+    return particles.size();
+}
