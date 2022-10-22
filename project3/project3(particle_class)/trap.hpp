@@ -11,7 +11,7 @@ class trap
     public:
         double B0_in, V0_in, d_in;
 
-        //std::vector<particle> particles;
+        std::vector<particle> particles;
 
         trap(double B0, double V0, double d);
 

@@ -24,7 +24,7 @@ int main()
 
     trap t = trap(B, V, d);
 
-    std::cout << t.V0_in << std::endl;
+    t.add_particle(p);
 
     return 0;
 }
