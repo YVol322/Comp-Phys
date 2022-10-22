@@ -25,8 +25,9 @@ int main()
     trap t = trap(B, V, d);
 
     t.add_particle(p);
+    t.B = t.external_E_field(r);
 
-    std::cout << t.size() << std::endl;
+    std::cout << t.E << std::endl;
 
     return 0;
 }
