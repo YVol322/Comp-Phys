@@ -1,7 +1,7 @@
 #include <iostream>
 #include <armadillo>
-#include "particle.hpp"
-#include "particle.cpp"
+#include "trap.hpp"
+#include "trap.cpp"
 
 int main()
 {
@@ -16,9 +16,15 @@ int main()
     v(1) = 5;
     v(2) = 6;
 
+    double B = 1;
+    double V = 6;
+    double d = 9;
+
     particle p = particle(q, m, r, v);
 
-    std::cout << p.charge() << std::endl;
+    trap t = trap(B, V, d);
+
+    std::cout << t.V0_in << std::endl;
 
     return 0;
 }
