@@ -15,7 +15,7 @@ class trap
 
         arma::vec E, B, F_ext;
 
-        arma::vec x, y, z, vx, vy, vz;
+        arma::vec x, y, z, vx, vy, vz, time;
 
         arma::vec r, v, rtemp, vtemp;
 

@@ -13,13 +13,15 @@ void trap::add_particle(particle particle_input)
 {
     particles.push_back(particle_input);
 
-    x.set_size(n);
-    y.set_size(n);
-    z.set_size(n);
+    x.set_size(n+1);
+    y.set_size(n+1);
+    z.set_size(n+1);
 
-    vx.set_size(n);
-    vy.set_size(n);
-    vz.set_size(n);
+    vx.set_size(n+1);
+    vy.set_size(n+1);
+    vz.set_size(n+1);
+
+    time.set_size(n+1);
 
     x(0) = particles[0].r0_(0);
     y(0) = particles[0].r0_(1);
@@ -28,6 +30,8 @@ void trap::add_particle(particle particle_input)
     vx(0) = particles[0].v0_(0);
     vy(0) = particles[0].v0_(1);
     vz(0) = particles[0].v0_(2);
+
+    time(0) = 0;
 
     r.set_size(3);
     v.set_size(3);
@@ -91,7 +95,7 @@ arma::vec trap::total_force_external()
 
 void trap::Forward_Euled(double dt)
 {
-    for(int i = 0; i<n-1; i++)
+    for(int i = 0; i<n; i++)
     {
         x(i+1) = x(i) + dt * vx(i);
         y(i+1) = y(i) + dt * vy(i);
@@ -108,12 +112,14 @@ void trap::Forward_Euled(double dt)
         v(0) = vx(i+1);
         v(1) = vy(i+1);
         v(2) = vz(i+1); 
+
+        time(i+1) = dt * (i+1);
     }
 }
 
 void trap::RK4(double dt)
 {
-    for(int i = 0; i<n-1; i++)
+    for(int i = 0; i<n; i++)
     {
         rtemp = r;
         vtemp = v;
@@ -155,5 +161,7 @@ void trap::RK4(double dt)
 
         z(i+1) = r(2);
         vz(i+1) = v(2);
+
+        time(i+1) = dt * (i+1);
     }
 }
