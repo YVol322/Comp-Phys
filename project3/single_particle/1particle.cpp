@@ -44,9 +44,9 @@ int main()
     std::cout << t.z << std::endl;
     std::cout << t.time << std::endl;
 
-    std::string filename = "z(t)_table_n=16k.csv";
+    std::string filename = "z_vs_t_16k.csv";
     std::ofstream ofile;
-    ofile.open("z(t)_table_n=16k.csv"); 
+    ofile.open("z_vs_t_16k_table.csv"); 
 
     ofile <<"z[μm], t[μm]"<<std::endl;
 
