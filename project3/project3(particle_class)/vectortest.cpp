@@ -21,12 +21,8 @@ int main()
 
     std::vector<particle> b;
 
-    std::vector<int> q;
-
     b.push_back(p);
 
-
-    q.push_back(int(3));
     std::cout << b.size();
 
 

@@ -9,11 +9,15 @@
 class trap
 {
     public:
-        double B0_in, V0_in, d_in;
+        double B0_, V0_, d_;
 
         std::vector<particle> particles;
 
         arma::vec E, B, F_ext;
+
+        arma::vec x, y, z, vx, vy, vz;
+
+        double dt, n, t;
 
         trap(double B0, double V0, double d);
 
@@ -24,6 +28,8 @@ class trap
         arma::vec external_B_field();
 
         arma::vec total_force_external();
+
+        void Forward_Euled(double dt);
 
 
 

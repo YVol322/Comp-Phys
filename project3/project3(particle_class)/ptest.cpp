@@ -8,10 +8,12 @@ int main()
 {
     double q = 0.3;
     double m = 2;
+
     arma::vec r(3);
     r(0) = 1;
     r(1) = 2;
     r(2) = 3;
+
     arma::vec v(3);
     v(0) = 4;
     v(1) = 5;
@@ -25,6 +27,8 @@ int main()
 
     trap t = trap(B, V, d);
 
+    t.n = 10;
+
     t.add_particle(p);
     
     t.external_B_field();
@@ -32,7 +36,7 @@ int main()
     t.total_force_external();
 
 
-    std::cout << t.F_ext << std::endl;
+    std::cout << t.z << std::endl;
 
     return 0;
 }

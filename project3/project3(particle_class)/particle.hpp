@@ -6,7 +6,7 @@ class particle
 {    
     public:
         double q_, m_;
-        arma::vec r_, v_;
+        arma::vec r0_, v0_;
         
         particle(double q, double m, arma::vec r, arma::vec v);
         
