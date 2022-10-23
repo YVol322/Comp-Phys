@@ -44,18 +44,23 @@ int main()
     std::cout << t.z << std::endl;
     std::cout << t.time << std::endl;
 
-    std::string filename = "z_vs_t_16k.csv";
+    std::string filename = "RK4_table.csv";
     std::ofstream ofile;
-    ofile.open("z_vs_t_16k_table.csv"); 
+    ofile.open("RK4_table.csv"); 
 
-    ofile <<"z[μm], t[μm]"<<std::endl;
+    ofile <<"x[μm], y[μm], z[μm], v_x[μm/μs], v_y[μm/μs], v_y[μm/μs], t[μm]"<<std::endl;
 
     int width = 15;
     int prec  = 6;
 
     for(int i=0; i<t.n;i++)
     {
-        ofile << std::setw(width) << std::setprecision(prec) << std::scientific << t.z(i) << "," 
+        ofile << std::setw(width) << std::setprecision(prec) << std::scientific << t.x(i) << ","
+        << std::setw(width) << std::setprecision(prec) << std::scientific << t.y(i) << ","
+        << std::setw(width) << std::setprecision(prec) << std::scientific << t.z(i) << ","
+        << std::setw(width) << std::setprecision(prec) << std::scientific << t.vx(i) << ","
+        << std::setw(width) << std::setprecision(prec) << std::scientific << t.vy(i) << ","
+        << std::setw(width) << std::setprecision(prec) << std::scientific << t.vz(i) << "," 
         << std::setw(width) << std::setprecision(prec) << std::scientific << t.time(i) << std::endl; 
     }
 
