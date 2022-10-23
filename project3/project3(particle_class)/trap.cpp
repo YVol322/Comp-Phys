@@ -84,9 +84,7 @@ arma::vec trap::external_B_field()
 
 arma::vec trap::total_force_external()
 {
-    F_ext(0) = particles[0].q_ * external_E_field(r)(0) + particles[0].q_ * v(1) * external_B_field()(2);
-    F_ext(1) = particles[0].q_ * external_E_field(r)(1) - particles[0].q_ * v(0) * external_B_field()(2);
-    F_ext(2) = particles[0].q_ * external_E_field(r)(2);
+    F_ext = particles[0].q_ * (external_E_field(r) + arma::cross(v, external_B_field()));
 
     return F_ext;
 }
@@ -124,16 +122,15 @@ void trap::RK4(double dt)
 
         k1r = v;
         k1v = total_force_external()/particles[0].m_;
-        if(i ==1){break;}
 
-        r = rtemp + k1r * (t0+dt/2);
-        v = vtemp + k1v * (t0+dt/2);
+        r = rtemp + k1r * dt/2;
+        v = vtemp + k1v * dt/2;
 
         k2r =  v;
         k2v = total_force_external()/particles[0].m_;
 
-        r = rtemp + k2r * (t0+dt/2);
-        v = vtemp + k2v * (t0+dt/2);
+        r = rtemp + k2r * dt/2;
+        v = vtemp + k2v * dt/2;
 
         k3r = v;
         k3v = total_force_external()/particles[0].m_;

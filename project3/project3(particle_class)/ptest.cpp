@@ -27,7 +27,7 @@ int main()
 
     trap t = trap(B, V, d);
 
-    t.n = 500;
+    t.n = 4000;
     t.t = 50;
     t.dt = t.t/t.n;
 
@@ -36,8 +36,8 @@ int main()
     t.RK4(t.dt);
 
 
-    std::cout << t.r << std::endl;
-    std::cout << t.v << std::endl;
+    std::cout << t.z << std::endl;
+    std::cout << t.vz << std::endl;
 
     return 0;
 }
