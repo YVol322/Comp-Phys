@@ -27,16 +27,17 @@ int main()
 
     trap t = trap(B, V, d);
 
-    t.n = 4000;
+    t.n = 500;
     t.t = 50;
     t.dt = t.t/t.n;
 
     t.add_particle(p);
     
-    t.Forward_Euled(t.dt);
+    t.RK4(t.dt);
 
 
-    std::cout << t.x << std::endl;
+    std::cout << t.r << std::endl;
+    std::cout << t.v << std::endl;
 
     return 0;
 }

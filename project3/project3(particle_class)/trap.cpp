@@ -44,6 +44,23 @@ void trap::add_particle(particle particle_input)
     B.set_size(3);
     F_ext.set_size(3);
 
+    k1r.set_size(3);
+    k2r.set_size(3);
+    k3r.set_size(3);
+    k4r.set_size(3);
+
+    k1v.set_size(3);
+    k2r.set_size(3);
+    k3r.set_size(3);
+    k4r.set_size(3);
+
+    rtemp.set_size(3);
+    vtemp.set_size(3);
+
+    kravg.set_size(3);
+    kvavg.set_size(3);
+
+
 
 }
 
@@ -93,5 +110,53 @@ void trap::Forward_Euled(double dt)
         v(0) = vx(i+1);
         v(1) = vy(i+1);
         v(2) = vz(i+1); 
+    }
+}
+
+void trap::RK4(double dt)
+{
+    for(int i = 0; i<n-1; i++)
+    {
+        rtemp = r;
+        vtemp = v;
+
+        t0 = i * dt;
+
+        k1r = v;
+        k1v = total_force_external()/particles[0].m_;
+        if(i ==1){break;}
+
+        r = rtemp + k1r * (t0+dt/2);
+        v = vtemp + k1v * (t0+dt/2);
+
+        k2r =  v;
+        k2v = total_force_external()/particles[0].m_;
+
+        r = rtemp + k2r * (t0+dt/2);
+        v = vtemp + k2v * (t0+dt/2);
+
+        k3r = v;
+        k3v = total_force_external()/particles[0].m_;
+
+        r = rtemp + k3r * dt;
+        v = vtemp + k3v * dt;
+
+        k4r = v;
+        k4v = total_force_external()/particles[0].m_;
+
+        kravg = 1./6 * (k1r + 2 * k2r + 2 * k3r + k4r);
+        kvavg = 1./6 * (k1v + 2 * k2v + 2 * k3v + k4v);
+
+        r = rtemp + kravg * dt;
+        v = vtemp + kvavg * dt;
+
+        x(i+1) = r(0);
+        vx(i+1) = v(0);
+
+        y(i+1) = r(1);
+        vy(i+1) = v(1);
+
+        z(i+1) = r(2);
+        vz(i+1) = v(2);
     }
 }

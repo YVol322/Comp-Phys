@@ -17,9 +17,15 @@ class trap
 
         arma::vec x, y, z, vx, vy, vz;
 
-        arma::vec r, v;
+        arma::vec r, v, rtemp, vtemp;
 
-        double dt, n, t;
+        double dt, n, t, t0;
+
+        arma::vec k1r, k2r, k3r, k4r;
+
+        arma::vec k1v, k2v, k3v, k4v;
+
+        arma::vec kravg, kvavg;
 
         trap(double B0, double V0, double d);
 
@@ -32,6 +38,8 @@ class trap
         arma::vec total_force_external();
 
         void Forward_Euled(double dt);
+
+        void RK4(double dt);
 
 
 
