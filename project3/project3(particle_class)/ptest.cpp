@@ -6,37 +6,37 @@
 
 int main()
 {
-    double q = 0.3;
-    double m = 2;
+    double q = 1;
+    double m = 40.078;
 
     arma::vec r(3);
-    r(0) = 1;
-    r(1) = 2;
-    r(2) = 3;
+    r(0) = 20;
+    r(1) = 0;
+    r(2) = 20;
 
     arma::vec v(3);
-    v(0) = 4;
-    v(1) = 5;
-    v(2) = 6;
+    v(0) = 0;
+    v(1) = 25;
+    v(2) = 0;
 
-    double B = 1;
-    double V = 6;
-    double d = 9;
+    double B = 96.5;
+    double V = 2.41 * pow(10, 6);
+    double d = 500;
 
     particle p = particle(q, m, r, v);
 
     trap t = trap(B, V, d);
 
-    t.n = 10;
+    t.n = 4000;
+    t.t = 50;
+    t.dt = t.t/t.n;
 
     t.add_particle(p);
     
-    t.external_B_field();
-    t.external_E_field(r);
-    t.total_force_external();
+    t.Forward_Euled(t.dt);
 
 
-    std::cout << t.z << std::endl;
+    std::cout << t.x << std::endl;
 
     return 0;
 }

@@ -17,6 +17,8 @@ class trap
 
         arma::vec x, y, z, vx, vy, vz;
 
+        arma::vec r, v;
+
         double dt, n, t;
 
         trap(double B0, double V0, double d);
