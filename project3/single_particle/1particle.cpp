@@ -28,7 +28,7 @@ int main()
 
     trap t = trap(B, V, d);
 
-    t.n = 16000;
+    t.n = 32000;
     t.t = 50;
     t.dt = t.t/t.n;
 
@@ -39,16 +39,16 @@ int main()
     //t.r =r;
     //t.v = v;
 
-    t.RK4(t.dt);
+    t.Forward_Euled(t.dt);
 
-    std::cout << t.z << std::endl;
-    std::cout << t.time << std::endl;
+    //std::cout << t.z << std::endl;
+    //std::cout << t.time << std::endl;
 
-    std::string filename = "RK4_table.csv";
+    std::string filename = "FE_sol_32k.csv";
     std::ofstream ofile;
-    ofile.open("RK4_table.csv"); 
+    ofile.open("FE_sol_32k.csv"); 
 
-    ofile <<"x[μm], y[μm], z[μm], v_x[μm/μs], v_y[μm/μs], v_y[μm/μs], t[μm]"<<std::endl;
+    ofile <<"x[μm], y[μm], z[μm], t[μm]"<<std::endl;
 
     int width = 15;
     int prec  = 6;
@@ -58,9 +58,6 @@ int main()
         ofile << std::setw(width) << std::setprecision(prec) << std::scientific << t.x(i) << ","
         << std::setw(width) << std::setprecision(prec) << std::scientific << t.y(i) << ","
         << std::setw(width) << std::setprecision(prec) << std::scientific << t.z(i) << ","
-        << std::setw(width) << std::setprecision(prec) << std::scientific << t.vx(i) << ","
-        << std::setw(width) << std::setprecision(prec) << std::scientific << t.vy(i) << ","
-        << std::setw(width) << std::setprecision(prec) << std::scientific << t.vz(i) << "," 
         << std::setw(width) << std::setprecision(prec) << std::scientific << t.time(i) << std::endl; 
     }
 
