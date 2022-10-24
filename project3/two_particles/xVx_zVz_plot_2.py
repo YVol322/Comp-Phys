@@ -83,39 +83,79 @@ file.close()
 plt.rcParams['font.size'] = '16'
 
 plt.figure(1)
-plt.ylabel('Coordinate $y [ \mu m]$')
 plt.xlabel('Coordinate $x [ \mu m]$')
-plt.plot(x1,y1, label = "particle 1", linewidth = 2, color = "r")
-plt.plot(x2,y2, label = "particle 2", linewidth = 2, color = "k")
-plt.title("xy plane motion without interaction")
-plt.legend()
+plt.ylabel('Speed $V_x [ \mu m/ \mu s]$')
+plt.plot(x1,vx1, label = "particle 1", linewidth = 1, color = "r")
+plt.plot(x2,vx2, label = "particle 2", linewidth = 1, color = "k")
+plt.title("$(x, V_x)$ plane without interaction")
+plt.legend(fontsize = 12)
 
 
 plt.figure(2)
-plt.ylabel('Coordinate $y [ \mu m]$')
-plt.xlabel('Coordinate $x [ \mu m]$')
-plt.plot(x1_int,y1_int, label = "particle 1", linewidth = 2, color = "r")
-plt.plot(x2_int,y2_int, label = "particle 2", linewidth = 2, color = "k")
-plt.title("xy plane motion with interaction")
-plt.legend()
+plt.ylabel('Coordinate $x [ \mu m]$')
+plt.xlabel('Speed $V_x [ \mu m/ \mu s]$')
+plt.plot(x1_int,vx1_int, label = "particle 1", linewidth = 1, color = "r")
+plt.plot(x2_int,vx2_int, label = "particle 2", linewidth = 1, color = "k")
+plt.title("$(x, V_x)$ plane with interaction")
+plt.legend(fontsize = 12)
 plt.show()
 
 plt.rcParams['font.size'] = '10'
 
 
 fig, axs = plt.subplots(2)
-axs[0].plot(x1_int,y1_int, label = "particle 1", linewidth = 1, color = "r")
-axs[0].plot(x2_int,y2_int, label = "particle 2", linewidth = 1, color = "k")
+axs[0].plot(x1_int,vx1_int, label = "particle 1", linewidth = 1, color = "r")
+axs[0].plot(x2_int,vx2_int, label = "particle 2", linewidth = 1, color = "k")
 axs[0].set_title('With interaction')
-axs[0].set(ylabel = 'Coordinate $y [ \mu m]$')
+axs[0].set(ylabel = 'Speed $V_x [ \mu m/ \mu s]$')
 axs[0].legend()
 plt.legend(fontsize = 10)
 
 
-axs[1].plot(x1,y1, label = "particle 1", linewidth = 1, color = "r")
-axs[1].plot(x2,y2, label = "particle 2", linewidth = 1, color = "k")
+axs[1].plot(x1,vx1, label = "particle 1", linewidth = 1, color = "r")
+axs[1].plot(x2,vx2, label = "particle 2", linewidth = 1, color = "k")
 axs[1].set_title('Without interaction')
 plt.xlabel('Coordinate $x [ \mu m]$')
-plt.ylabel('Coordinate $y [ \mu m]$')
+plt.ylabel('Speed $V_x [ \mu m/ \mu s]$')
+axs[1].legend()
+plt.show()
+
+plt.rcParams['font.size'] = '16'
+
+plt.figure(3)
+plt.xlabel('Coordinate $z [ \mu m]$')
+plt.ylabel('Speed $V_z [ \mu m/ \mu s]$')
+plt.plot(z1,vz1, label = "particle 1", linewidth = 1.5, color = "r")
+plt.plot(z2,vz2, label = "particle 2", linewidth = 1.5, color = "k")
+plt.title("$(z, V_z)$ plane without interaction")
+plt.legend(fontsize = 12)
+
+
+plt.figure(4)
+plt.ylabel('Coordinate $z [ \mu m]$')
+plt.xlabel('Speed $V_z [ \mu m/ \mu s]$')
+plt.plot(z1_int,vz1_int, label = "particle 1", linewidth = 0.5, color = "r")
+plt.plot(z2_int,vz2_int, label = "particle 2", linewidth = 0.5, color = "k")
+plt.title("$(z, V_z)$ plane with interaction")
+plt.legend(fontsize = 12)
+plt.show()
+
+plt.rcParams['font.size'] = '10'
+
+
+fig, axs = plt.subplots(2)
+axs[0].plot(z1_int,vz1_int, label = "particle 1", linewidth = 0.5, color = "r")
+axs[0].plot(z2_int,vz2_int, label = "particle 2", linewidth = 0.5, color = "k")
+axs[0].set_title('With interaction')
+axs[0].set(ylabel = 'Speed $V_z [ \mu m/ \mu s]$')
+axs[0].legend()
+plt.legend(fontsize = 10)
+
+
+axs[1].plot(z1,vz1, label = "particle 1", linewidth = 0.5, color = "r")
+axs[1].plot(z2,vz2, label = "particle 2", linewidth = 0.5, color = "k")
+axs[1].set_title('Without interaction')
+plt.xlabel('Coordinate $z [ \mu m]$')
+plt.ylabel('Speed $V_z [ \mu m/ \mu s]$')
 axs[1].legend()
 plt.show()

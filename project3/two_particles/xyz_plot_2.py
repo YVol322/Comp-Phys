@@ -1,6 +1,10 @@
+from cProfile import label
 import csv
 import numpy as np
-from matplotlib import pyplot as plt 
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+
 
 file = open("/Users/JVol/Documents/GitHub/comp-phys/project3/two_particles/RK4_table_2.csv")
 type(file)
@@ -80,42 +84,13 @@ for i in range(len(rows)):
 
 file.close()
 
-plt.rcParams['font.size'] = '16'
+fig1 = plt.figure()
+ax1 = plt.axes(projection='3d')
+ax1.plot3D(x1, y1, z1, 'r')
+ax1.plot3D(x2, y2, z2, 'k', linestyle = "--")
 
-plt.figure(1)
-plt.ylabel('Coordinate $y [ \mu m]$')
-plt.xlabel('Coordinate $x [ \mu m]$')
-plt.plot(x1,y1, label = "particle 1", linewidth = 2, color = "r")
-plt.plot(x2,y2, label = "particle 2", linewidth = 2, color = "k")
-plt.title("xy plane motion without interaction")
-plt.legend()
-
-
-plt.figure(2)
-plt.ylabel('Coordinate $y [ \mu m]$')
-plt.xlabel('Coordinate $x [ \mu m]$')
-plt.plot(x1_int,y1_int, label = "particle 1", linewidth = 2, color = "r")
-plt.plot(x2_int,y2_int, label = "particle 2", linewidth = 2, color = "k")
-plt.title("xy plane motion with interaction")
-plt.legend()
-plt.show()
-
-plt.rcParams['font.size'] = '10'
-
-
-fig, axs = plt.subplots(2)
-axs[0].plot(x1_int,y1_int, label = "particle 1", linewidth = 1, color = "r")
-axs[0].plot(x2_int,y2_int, label = "particle 2", linewidth = 1, color = "k")
-axs[0].set_title('With interaction')
-axs[0].set(ylabel = 'Coordinate $y [ \mu m]$')
-axs[0].legend()
-plt.legend(fontsize = 10)
-
-
-axs[1].plot(x1,y1, label = "particle 1", linewidth = 1, color = "r")
-axs[1].plot(x2,y2, label = "particle 2", linewidth = 1, color = "k")
-axs[1].set_title('Without interaction')
-plt.xlabel('Coordinate $x [ \mu m]$')
-plt.ylabel('Coordinate $y [ \mu m]$')
-axs[1].legend()
+fig2 = plt.figure()
+ax2 = plt.axes(projection='3d')
+ax2.plot3D(x1_int, y1_int, z1_int, 'r')
+ax2.plot3D(x2_int, y2_int, z2_int, 'k', linestyle = "--")
 plt.show()
