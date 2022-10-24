@@ -17,15 +17,15 @@ class trap
 
         arma::mat x, y, z, vx, vy, vz, time;
 
-        arma::vec r, v, rtemp, vtemp;
+        arma::mat r, v, rtemp, vtemp;
 
         double dt, n, t, t0, N;
 
-        arma::vec k1r, k2r, k3r, k4r;
+        arma::mat k1r, k2r, k3r, k4r;
 
-        arma::vec k1v, k2v, k3v, k4v;
+        arma::mat k1v, k2v, k3v, k4v;
 
-        arma::vec kravg, kvavg;
+        arma::mat kravg, kvavg;
 
         trap(double B0, double V0, double d);
 

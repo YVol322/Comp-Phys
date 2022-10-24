@@ -69,21 +69,29 @@ int main()
 
     t.time(0) = 0;
 
-    t.r(0) = t.x(0, 0);
-    t.r(1) = t.y(0, 0);
-    t.r(2) = t.z(0, 0);
+    t.r(0, 0) = t.x(0, 0);
+    t.r(1, 0) = t.y(0, 0);
+    t.r(2, 0) = t.z(0, 0);
 
-    t.v(0) = t.vx(0, 0);
-    t.v(1) = t.vy(0, 0);
-    t.v(2) = t.vz(0, 0);
+    t.v(0, 0) = t.vx(0, 0);
+    t.v(1, 0) = t.vy(0, 0);
+    t.v(2, 0) = t.vz(0, 0);
 
-    t.Forward_Euled(t.dt);
+    t.r(0, 1) = t.x(0, 1);
+    t.r(1, 1) = t.y(0, 1);
+    t.r(2, 1) = t.z(0, 1);
+
+    t.v(0, 1) = t.vx(0, 1);
+    t.v(1, 1) = t.vy(0, 1);
+    t.v(2, 1) = t.vz(0, 1);
+
+    t.RK4(t.dt);
 
     std::cout << t.z << std::endl;
 
-    std::string filename = "FE_table_2.csv";
+    std::string filename = "RK4_table_2_int.csv";
     std::ofstream ofile;
-    ofile.open("FE_table_2.csv"); 
+    ofile.open("RK4_table_2_int.csv"); 
 
     ofile <<"x[μm], y[μm], z[μm], v_x[μm/μs], v_y[μm/μs], v_y[μm/μs], t[μm]"<<std::endl;
 

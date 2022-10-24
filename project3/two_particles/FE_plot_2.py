@@ -2,7 +2,7 @@ import csv
 import numpy as np
 from matplotlib import pyplot as plt 
 
-file = open("/Users/JVol/Documents/GitHub/comp-phys/project3/two_particles/FE_table_2_int.csv")
+file = open("/Users/JVol/Documents/GitHub/comp-phys/project3/two_particles/RK4_table_2_int.csv")
 type(file)
 csvreader=csv.reader(file)
 header = []
