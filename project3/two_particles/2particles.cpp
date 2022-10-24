@@ -79,6 +79,8 @@ int main()
 
     t.Forward_Euled(t.dt);
 
+    std::cout << t.z << std::endl;
+
     std::string filename = "FE_table_2.csv";
     std::ofstream ofile;
     ofile.open("FE_table_2.csv"); 
@@ -88,7 +90,7 @@ int main()
     int width = 15;
     int prec  = 6;
 
-    for(int i=0; i<t.n;i++)
+    for(int i=0; i<t.n+1;i++)
     {
         ofile << std::setw(width) << std::setprecision(prec) << std::scientific << t.x(i, 1) << ","
         << std::setw(width) << std::setprecision(prec) << std::scientific << t.y(i, 1) << ","

@@ -117,36 +117,42 @@ arma::vec trap::total_force(int i)
 
 void trap::Forward_Euled(double dt)
 {
-    for(int j=0; j<N; j++)
-    {
         for(int i = 0; i<n; i++)
         {
-            x(i+1, j) = x(i, j) + dt * vx(i, j);
-            y(i+1, j) = y(i, j) + dt * vy(i, j);
-            z(i+1, j) = z(i, j) + dt * vz(i, j);
+            for(int j =0; j<N; j++)
+            {
+                x(i+1, j) = x(i, j) + dt * vx(i, j);
+                y(i+1, j) = y(i, j) + dt * vy(i, j);
+                z(i+1, j) = z(i, j) + dt * vz(i, j);
 
-            vx(i+1, j) = vx(i, j) + dt * total_force_external(j)(0) / particles[0].m_;
-            vy(i+1, j) = vy(i, j) + dt * total_force_external(j)(1) / particles[0].m_;
-            vz(i+1, j) = vz(i, j) + dt * total_force_external(j)(2) / particles[0].m_;
+                vx(i+1, j) = vx(i, j) + dt * total_force(j)(0) / particles[0].m_;
+                vy(i+1, j) = vy(i, j) + dt * total_force_external(j)(1) / particles[0].m_;
+                vz(i+1, j) = vz(i, j) + dt * total_force_external(j)(2) / particles[0].m_;
 
-            r(0) = x(i+1, j);
-            r(1) = y(i+1, j);
-            r(2) = z(i+1, j);
+                time(i+1) = dt * (i+1);
 
-            v(0) = vx(i+1, j);
-            v(1) = vy(i+1, j);
-            v(2) = vz(i+1, j); 
+                if(j ==1)
+                {
+                    break;
+                }
 
-            time(i+1) = dt * (i+1);
+                r(0) = x(i, j+1);
+                r(1) = y(i, j+1);
+                r(2) = z(i, j+1);
+
+                v(0) = vx(i, j+1);
+                v(1) = vy(i, j+1);
+                v(2) = vz(i, j+1); 
+            }
+
+            r(0) = x(i+1, 0);
+            r(1) = y(i+1, 0);
+            r(2) = z(i+1, 0);
+
+            v(0) = vx(i+1, 0);
+            v(1) = vy(i+1, 0);
+            v(2) = vz(i+1, 0); 
         }
-        r(0) = x(0, 1);
-        r(1) = y(0, 1);
-        r(2) = z(0, 1);
-
-        v(0) = vx(0, 1);
-        v(1) = vy(0, 1);
-        v(2) = vz(0, 1);
-    }
 }
 //
 //void trap::RK4(double dt)
