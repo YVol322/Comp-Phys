@@ -89,25 +89,32 @@ int main()
 
     std::cout << t.z << std::endl;
 
-    std::string filename = "RK4_table_2_int.csv";
-    std::ofstream ofile;
-    ofile.open("RK4_table_2_int.csv"); 
-
-    ofile <<"x[μm], y[μm], z[μm], v_x[μm/μs], v_y[μm/μs], v_y[μm/μs], t[μm]"<<std::endl;
-
-    int width = 15;
-    int prec  = 6;
-
-    for(int i=0; i<t.n+1;i++)
-    {
-        ofile << std::setw(width) << std::setprecision(prec) << std::scientific << t.x(i, 1) << ","
-        << std::setw(width) << std::setprecision(prec) << std::scientific << t.y(i, 1) << ","
-        << std::setw(width) << std::setprecision(prec) << std::scientific << t.z(i, 1) << ","
-        << std::setw(width) << std::setprecision(prec) << std::scientific << t.vx(i, 1) << ","
-        << std::setw(width) << std::setprecision(prec) << std::scientific << t.vy(i, 1) << ","
-        << std::setw(width) << std::setprecision(prec) << std::scientific << t.vz(i, 1) << "," 
-        << std::setw(width) << std::setprecision(prec) << std::scientific << t.time(i) << std::endl; 
-    }
+    //std::string filename = "RK4_table_2_int.csv";
+    //std::ofstream ofile;
+    //ofile.open("RK4_table_2_int.csv"); 
+//
+    //ofile <<"x1[μm], y1[μm], z1[μm], v_x1[μm/μs], v_y1[μm/μs], v_y1[μm/μs],"
+    //<<"x2[μm], y2[μm], z2[μm], v_x2[μm/μs], v_y2[μm/μs], v_y2[μm/μs], t[μs]" << std::endl;
+//
+    //int width = 15;
+    //int prec  = 6;
+//
+    //for(int i=0; i<t.n+1;i++)
+    //{
+    //    ofile << std::setw(width) << std::setprecision(prec) << std::scientific << t.x(i, 0) << ","
+    //    << std::setw(width) << std::setprecision(prec) << std::scientific << t.y(i, 0) << ","
+    //    << std::setw(width) << std::setprecision(prec) << std::scientific << t.z(i, 0) << ","
+    //    << std::setw(width) << std::setprecision(prec) << std::scientific << t.vx(i, 0) << ","
+    //    << std::setw(width) << std::setprecision(prec) << std::scientific << t.vy(i, 0) << ","
+    //    << std::setw(width) << std::setprecision(prec) << std::scientific << t.vz(i, 0) << ","
+    //    << std::setw(width) << std::setprecision(prec) << std::scientific << t.x(i, 1) << ","
+    //    << std::setw(width) << std::setprecision(prec) << std::scientific << t.y(i, 1) << ","
+    //    << std::setw(width) << std::setprecision(prec) << std::scientific << t.z(i, 1) << ","
+    //    << std::setw(width) << std::setprecision(prec) << std::scientific << t.vx(i, 1) << ","
+    //    << std::setw(width) << std::setprecision(prec) << std::scientific << t.vy(i, 1) << ","
+    //    << std::setw(width) << std::setprecision(prec) << std::scientific << t.vz(i, 1) << ","
+    //    << std::setw(width) << std::setprecision(prec) << std::scientific << t.time(i) << std::endl; 
+    //}
 
 
     return 0;
