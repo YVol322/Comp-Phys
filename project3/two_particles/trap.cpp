@@ -125,7 +125,7 @@ void trap::Forward_Euled(double dt)
                 y(i+1, j) = y(i, j) + dt * vy(i, j);
                 z(i+1, j) = z(i, j) + dt * vz(i, j);
 
-                vx(i+1, j) = vx(i, j) + dt * total_force(j)(0) / particles[0].m_;
+                vx(i+1, j) = vx(i, j) + dt * total_force_external(j)(0) / particles[0].m_;
                 vy(i+1, j) = vy(i, j) + dt * total_force_external(j)(1) / particles[0].m_;
                 vz(i+1, j) = vz(i, j) + dt * total_force_external(j)(2) / particles[0].m_;
 
