@@ -29,6 +29,10 @@ class trap
 
         double num;
 
+        double Wz, f;
+
+        double tt;
+
         trap(double B0, double V0, double d);
 
         void add_particle(particle particle_input);
@@ -36,6 +40,8 @@ class trap
         void add_N_particles(int Nu, arma::mat r, arma::mat v, double q, double m);
 
         void setsize();
+
+        double V_dt(double time);
 
         double number_of_particles(arma::mat r);
 

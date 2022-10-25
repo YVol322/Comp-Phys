@@ -80,6 +80,13 @@ double trap::number_of_particles(arma::mat r)
     return num;
 }
 
+double trap::V_dt(double t)
+{
+    double V_temp = V0_ * (1 + f * cos(Wz * t));
+    
+    return V_temp;
+}
+
 arma::vec trap::external_E_field(arma::vec r)
 {
     double norm = sqrt(pow(r(0),2)+ pow(r(1),2) + pow(r(2),2));
