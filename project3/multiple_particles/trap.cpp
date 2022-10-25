@@ -80,14 +80,14 @@ double trap::number_of_particles(arma::mat r)
     return num;
 }
 
-double trap::V_dt(double t)
+double trap::V_dt(double current_time)
 {
-    double V_temp = V0_ * (1 + f * cos(Wz * t));
+    double V_temp = V0_ * (1 + f * cos(Wv * current_time));
     
     return V_temp;
 }
 
-arma::vec trap::external_E_field(arma::vec r)
+arma::vec trap::external_E_field(arma::vec r, double current_time)
 {
     double norm = sqrt(pow(r(0),2)+ pow(r(1),2) + pow(r(2),2));
     if(norm > d_)
@@ -98,9 +98,9 @@ arma::vec trap::external_E_field(arma::vec r)
     }
     else
     {
-        E(0) = V0_/pow(d_, 2) * r(0);
-        E(1) = V0_/pow(d_, 2) * r(1);
-        E(2) = - 2 * V0_/pow(d_, 2) * r(2);
+        E(0) = V_dt(current_time)/pow(d_, 2) * r(0);
+        E(1) = V_dt(current_time)/pow(d_, 2) * r(1);
+        E(2) = - 2 * V_dt(current_time)/pow(d_, 2) * r(2);
 
         return E;
     }
@@ -137,26 +137,26 @@ arma::vec trap::force_particle(int i, int j)
     return F_int;
 }
 
-arma::vec trap::total_force_external(int i)
+arma::vec trap::total_force_external(int i, double current_time)
 {
-    F_ext = particles[i].q_ * (external_E_field(r.col(i)) + arma::cross(v.col(i), external_B_field(r.col(i))));
+    F_ext = particles[i].q_ * (external_E_field(r.col(i), current_time) + arma::cross(v.col(i), external_B_field(r.col(i))));
 
     return F_ext;
 }
 
-arma::vec trap::total_force(int i, bool s)
+arma::vec trap::total_force(int i, bool s, double current_time)
 {
     if(s == true)
     {
         if(i == 0)
         {
-            F_tot = total_force_external(i) + force_particle(0, 1);
+            F_tot = total_force_external(i, current_time) + force_particle(0, 1);
 
             return F_tot;
         }
         if(i == 1)
         {
-            F_tot = total_force_external(i) + force_particle(1, 0);
+            F_tot = total_force_external(i, current_time) + force_particle(1, 0);
 
             return F_tot;
         }
@@ -169,7 +169,7 @@ arma::vec trap::total_force(int i, bool s)
     }
     else
     {
-       F_tot = total_force_external(i);
+       F_tot = total_force_external(i,current_time);
 
        return F_tot; 
     }
@@ -180,71 +180,65 @@ arma::vec trap::total_force(int i, bool s)
 
 void trap::Forward_Euled(double dt)
 {
-        for(int i = 0; i<n; i++)
+    time(0) = 0;
+    for(int i = 0; i<n; i++)
+    {
+        current_time = dt * (i + 1);
+        time(i+1) = current_time;
+
+        for(int j =0; j<N; j++)
         {
-            for(int j =0; j<N; j++)
-            {
-                x(i+1, j) = x(i, j) + dt * vx(i, j);
-                y(i+1, j) = y(i, j) + dt * vy(i, j);
-                z(i+1, j) = z(i, j) + dt * vz(i, j);
+            x(i+1, j) = x(i, j) + dt * vx(i, j);
+            y(i+1, j) = y(i, j) + dt * vy(i, j);
+            z(i+1, j) = z(i, j) + dt * vz(i, j);
 
-                vx(i+1, j) = vx(i, j) + dt * total_force(j,1)(0) / particles[0].m_;
-                vy(i+1, j) = vy(i, j) + dt * total_force(j,1)(1) / particles[0].m_;
-                vz(i+1, j) = vz(i, j) + dt * total_force(j,1)(2) / particles[0].m_;
+            vx(i+1, j) = vx(i, j) + dt * total_force(j,0, current_time)(0) / particles[j].m_;
+            vy(i+1, j) = vy(i, j) + dt * total_force(j,0, current_time)(1) / particles[j].m_;
+            vz(i+1, j) = vz(i, j) + dt * total_force(j,0, current_time)(2) / particles[j].m_;
 
-                time(i+1) = dt * (i+1);
-            }
+            r(0, j) = x(i+1, j);
+            r(1, j) = y(i+1, j);
+            r(2, j) = z(i+1, j);
 
-            r(0, 0) = x(i+1, 0);
-            r(1, 0) = y(i+1, 0);
-            r(2, 0) = z(i+1, 0);
-
-            v(0, 0) = vx(i+1, 0);
-            v(1, 0) = vy(i+1, 0);
-            v(2, 0) = vz(i+1, 0);
-
-            r(0, 1) = x(i+1, 1);
-            r(1, 1) = y(i+1, 1);
-            r(2, 1) = z(i+1, 1);
-
-            v(0, 1) = vx(i+1, 1);
-            v(1, 1) = vy(i+1, 1);
-            v(2, 1) = vz(i+1, 1);
-
+            v(0, j) = vx(i+1, j);
+            v(1, j) = vy(i+1, j);
+            v(2, j) = vz(i+1, j);
         }
+    }
 }
 
 void trap::RK4(double dt)
 {
+    time(0) = 0;
     for(int i = 0; i<n; i++)
     {
+        current_time = dt * (i + 1);
         for(int j = 0; j<N;j++)
         {
             rtemp = r.col(j);
             vtemp = v.col(j);
 
-            t0 = i * dt;
 
             k1r.col(j) = v.col(j);
-            k1v.col(j) = total_force(j, 1)/particles[0].m_;
+            k1v.col(j) = total_force(j, 0, current_time)/particles[0].m_;
 
             r.col(j) = rtemp + k1r.col(j) * dt/2;
             v.col(j) = vtemp + k1v.col(j) * dt/2;
 
             k2r.col(j) =  v.col(j);
-            k2v.col(j) = total_force(j, 1)/particles[0].m_;
+            k2v.col(j) = total_force(j, 0, current_time)/particles[0].m_;
 
             r.col(j) = rtemp + k2r.col(j) * dt/2;
             v.col(j) = vtemp + k2v.col(j) * dt/2;
 
             k3r.col(j) = v.col(j);
-            k3v.col(j) = total_force(j, 1)/particles[0].m_;
+            k3v.col(j) = total_force(j, 0, current_time)/particles[0].m_;
 
             r.col(j) = rtemp + k3r.col(j) * dt;
             v.col(j) = vtemp + k3v.col(j) * dt;
 
             k4r.col(j) = v.col(j);
-            k4v.col(j) = total_force(j, 1)/particles[0].m_;
+            k4v.col(j) = total_force(j, 0, current_time)/particles[0].m_;
 
             kravg.col(j) = 1./6 * (k1r.col(j) + 2 * k2r.col(j) + 2 * k3r.col(j) + k4r.col(j));
             kvavg.col(j) = 1./6 * (k1v.col(j) + 2 * k2v.col(j) + 2 * k3v.col(j) + k4v.col(j));
@@ -261,8 +255,6 @@ void trap::RK4(double dt)
 
             z(i+1, j) = r(2, j);
             vz(i+1, j) = v(2, j);
-
-            time(i+1) = dt * (i+1);
         }
     }   
 }

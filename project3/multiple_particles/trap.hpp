@@ -19,7 +19,7 @@ class trap
 
         arma::mat r, v, rtemp, vtemp;
 
-        double dt, n, t, t0, N;
+        double dt, n, total_time, t0, current_time, N;
 
         arma::mat k1r, k2r, k3r, k4r;
 
@@ -29,7 +29,7 @@ class trap
 
         double num;
 
-        double Wz, f;
+        double Wv, f;
 
         double tt;
 
@@ -41,19 +41,19 @@ class trap
 
         void setsize();
 
-        double V_dt(double time);
+        double V_dt(double current_time);
 
         double number_of_particles(arma::mat r);
 
-        arma::vec external_E_field(arma::vec r);
+        arma::vec external_E_field(arma::vec r, double current_time);
 
         arma::vec external_B_field(arma::vec r);
 
-        arma::vec force_particle(int i, int j);
+        arma::vec force_particle(int i, int j);///////////////////// didn't check
 
-        arma::vec total_force_external(int i);
+        arma::vec total_force_external(int i, double current_time);
 
-        arma::vec total_force(int i, bool s);
+        arma::vec total_force(int i, bool s, double current_time);
 
         void Forward_Euled(double dt);
 

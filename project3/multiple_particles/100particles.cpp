@@ -9,7 +9,7 @@ int main()
 {
     double q = 1;
     double m = 40.078;
-    int N = 10;
+    int N = 5;
 
     double B = 96.5;
     double V = 2.41 * pow(10, 6);
@@ -27,14 +27,14 @@ int main()
     t.v = v_init;
     t.t0 = 0.;
 
-    t.n = 40000.;
-    t.t = 500;
-    t.dt = t.t/t.n;
+    t.n = 400000.;
+    t.total_time = 500;
+    t.dt = t.total_time/t.n;
 
     t.setsize();
 
     t.f = 0.1;
-    t.Wz = 0.2;
+    t.Wv = 0.2;
 
     for(int i = 0; i<N; i++)
     {
@@ -48,22 +48,19 @@ int main()
     t.vz(0, i) = v_init(2, i);
     }
 
-    //t.Forward_Euled(t.dt);
+    t.r = r_init;
+    t.v = v_init;
 
-    std::cout << t.particles.size() << std::endl;
-    
+    t.RK4(t.dt);
 
-    
+    std::cout << t.number_of_particles(t.r) << std::endl;
+    std::cout << t.number_of_particles(r_init) << std::endl;
 
-    //std::cout << t.r << std::endl;
-    //std::cout << t.v << std::endl;
-
-    //std::string filename = "RK4_table_2_int.csv";
+    //std::string filename = "FE4_table_100ms.csv";
     //std::ofstream ofile;
-    //ofile.open("RK4_table_2_int.csv"); 
+    //ofile.open("FE4_table_100ms.csv"); 
 //
-    //ofile <<"x1[μm], y1[μm], z1[μm], v_x1[μm/μs], v_y1[μm/μs], v_y1[μm/μs],"
-    //<<"x2[μm], y2[μm], z2[μm], v_x2[μm/μs], v_y2[μm/μs], v_y2[μm/μs], t[μs]" << std::endl;
+    //ofile <<"x1[μm], y1[μm], z1[μm], v_x1[μm/μs], v_y1[μm/μs], t[μs]" << std::endl;
 //
     //int width = 15;
     //int prec  = 6;
@@ -76,12 +73,6 @@ int main()
     //    << std::setw(width) << std::setprecision(prec) << std::scientific << t.vx(i, 0) << ","
     //    << std::setw(width) << std::setprecision(prec) << std::scientific << t.vy(i, 0) << ","
     //    << std::setw(width) << std::setprecision(prec) << std::scientific << t.vz(i, 0) << ","
-    //    << std::setw(width) << std::setprecision(prec) << std::scientific << t.x(i, 1) << ","
-    //    << std::setw(width) << std::setprecision(prec) << std::scientific << t.y(i, 1) << ","
-    //    << std::setw(width) << std::setprecision(prec) << std::scientific << t.z(i, 1) << ","
-    //    << std::setw(width) << std::setprecision(prec) << std::scientific << t.vx(i, 1) << ","
-    //    << std::setw(width) << std::setprecision(prec) << std::scientific << t.vy(i, 1) << ","
-    //    << std::setw(width) << std::setprecision(prec) << std::scientific << t.vz(i, 1) << ","
     //    << std::setw(width) << std::setprecision(prec) << std::scientific << t.time(i) << std::endl; 
     //}
 
