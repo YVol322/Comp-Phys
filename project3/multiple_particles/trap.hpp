@@ -27,11 +27,17 @@ class trap
 
         arma::mat kravg, kvavg;
 
+        double num;
+
         trap(double B0, double V0, double d);
 
         void add_particle(particle particle_input);
+        
+        void add_N_particles(int Nu, arma::mat r, arma::mat v, double q, double m);
 
         void setsize();
+
+        double number_of_particles(arma::mat r);
 
         arma::vec external_E_field(arma::vec r);
 
@@ -41,7 +47,7 @@ class trap
 
         arma::vec total_force_external(int i);
 
-        arma::vec total_force(int i);
+        arma::vec total_force(int i, bool s);
 
         void Forward_Euled(double dt);
 

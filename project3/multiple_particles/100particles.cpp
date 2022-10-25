@@ -9,88 +9,28 @@ int main()
 {
     double q = 1;
     double m = 40.078;
-
-    arma::vec r1(3);
-    r1(0) = 20;
-    r1(1) = 0;
-    r1(2) = 20;
-
-    arma::vec v1(3);
-    v1(0) = 0;
-    v1(1) = 25;
-    v1(2) = 0;
-
-    arma::vec r2(3);
-    r2(0) = 25;
-    r2(1) = 25;
-    r2(2) = 0;
-
-    arma::vec v2(3);
-    v2(0) = 0;
-    v2(1) = 40;
-    v2(2) = 5;
-
-    arma::vec r3(3);
-    r3(0) = 500;
-    r3(1) = 0;
-    r3(2) = 20;
+    int N = 100;
 
     double B = 96.5;
     double V = 2.41 * pow(10, 6);
     double d = 500;
 
-    particle p1 = particle(q, m, r1, v1);
-    particle p2 = particle(q, m, r2, v2);
+    arma::mat r_init = arma::mat(3, N).randn() * 0.1 * d;
+    arma::mat v_init = arma::mat(3, N).randn() * 0.1 * d;
 
     trap t = trap(B, V, d);
-
-    t.n = 16000;
-    t.t = 50;
-    t.dt = t.t/t.n;
-    t.N = 2;
-
-    t.k_e = 1.38935333 * pow(10, 5);
-
-    t.add_particle(p1);
-    t.add_particle(p2);
-
     t.setsize();
 
-    t.x(0, 0) = t.particles[0].r0_(0);
-    t.y(0, 0) = t.particles[0].r0_(1);
-    t.z(0, 0) = t.particles[0].r0_(2);
+    t.add_N_particles(N, r_init, v_init, q, m);
 
-    t.vx(0, 0) = t.particles[0].v0_(0);
-    t.vy(0, 0) = t.particles[0].v0_(1);
-    t.vz(0, 0) = t.particles[0].v0_(2);
+    std::cout << v_init.col(99) << std::endl;
+    std::cout << t.particles[99].v0_ << std::endl;
+    std::cout << t.d_ << std::endl;
 
-    t.x(0, 1) = t.particles[1].r0_(0);
-    t.y(0, 1) = t.particles[1].r0_(1);
-    t.z(0, 1) = t.particles[1].r0_(2);
+    
 
-    t.vx(0, 1) = t.particles[1].v0_(0);
-    t.vy(0, 1) = t.particles[1].v0_(1);
-    t.vz(0, 1) = t.particles[1].v0_(2);
-
-    t.time(0) = 0;
-
-    t.r(0, 0) = t.x(0, 0);
-    t.r(1, 0) = t.y(0, 0);
-    t.r(2, 0) = t.z(0, 0);
-
-    t.v(0, 0) = t.vx(0, 0);
-    t.v(1, 0) = t.vy(0, 0);
-    t.v(2, 0) = t.vz(0, 0);
-
-    t.r(0, 1) = t.x(0, 1);
-    t.r(1, 1) = t.y(0, 1);
-    t.r(2, 1) = t.z(0, 1);
-
-    t.v(0, 1) = t.vx(0, 1);
-    t.v(1, 1) = t.vy(0, 1);
-    t.v(2, 1) = t.vz(0, 1);
-
-    std::cout << t.external_E_field(r3) << std::endl;
+    //std::cout << t.r << std::endl;
+    //std::cout << t.v << std::endl;
 
     //std::string filename = "RK4_table_2_int.csv";
     //std::ofstream ofile;
