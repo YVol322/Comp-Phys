@@ -3,7 +3,7 @@ from re import X
 import numpy as np
 from matplotlib import pyplot as plt 
 
-file = open("/Users/JVol/Documents/GitHub/comp-phys/project3/multiple_particles/RK4_table_500m_50p.csv")
+file = open("/Users/JVol/Documents/GitHub/comp-phys/project3/multiple_particles/RK4_table_500ms_100p.csv")
 type(file)
 csvreader=csv.reader(file)
 header = []

@@ -49,11 +49,11 @@ class trap
 
         arma::vec external_B_field(arma::vec r);
 
-        arma::vec force_particle(int i, int j);///////////////////// didn't check
+        arma::vec total_force_particle(int i, arma::mat r, double current_time);
 
         arma::vec total_force_external(int i, double current_time);
 
-        arma::vec total_force(int i, bool s, double current_time);
+        arma::vec total_force(int i, bool s, arma::mat r, double current_time);
 
         void Forward_Euled(double dt);
 
@@ -62,13 +62,4 @@ class trap
 
 
 };
-
-
-//double external_el_field(std::vector<particle> particle_parameters_, double V0, double d);
-
-//double external_mag_field(std::vector<particle> particle_parameters_, double B0, double d);
-
-//double particles_interaction_force(std::vector<particle> particle_parameters_, double B0, double V0, double d);
-
-
 #endif

@@ -9,7 +9,7 @@ int main()
 {
     double q = 1;
     double m = 40.078;
-    int N = 100;
+    int N = 25;
 
     double B = 96.5;
     double V = 2.41 * pow(10, 6);
@@ -26,6 +26,8 @@ int main()
     t.r = r_init;
     t.v = v_init;
     t.t0 = 0.;
+
+    t.k_e = 1.38935333 * pow(10,5);
 
     t.n = 4000.;
     t.total_time = 500;
@@ -83,9 +85,9 @@ int main()
         }
     }
 
-    std::string filename = "RK4_table_500m_50p.csv";
+    std::string filename = "RK4_table_500ms_25p.csv";
     std::ofstream ofile;
-    ofile.open("RK4_table_500m_50p.csv"); 
+    ofile.open("RK4_table_500ms_25p.csv"); 
 
     ofile <<"n1, n2, n3, W" << std::endl;
 
