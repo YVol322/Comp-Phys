@@ -2,7 +2,7 @@ import csv
 import numpy as np
 from matplotlib import pyplot as plt 
 
-file = open("/Users/JVol/Documents/GitHub/comp-phys/project3/two_particles/RK4_table_2.csv")
+file = open("/Users/JVol/Documents/GitHub/comp-phys/project3/two_particles/tables/RK4_table_2.csv")
 type(file)
 csvreader=csv.reader(file)
 header = []
@@ -42,7 +42,7 @@ for i in range(len(rows)):
 
 file.close()
 
-file = open("/Users/JVol/Documents/GitHub/comp-phys/project3/two_particles/RK4_table_2_int.csv")
+file = open("/Users/JVol/Documents/GitHub/comp-phys/project3/two_particles/tables/RK4_table_2_int.csv")
 type(file)
 csvreader=csv.reader(file)
 header = []
@@ -80,7 +80,7 @@ for i in range(len(rows)):
 
 file.close()
 
-plt.rcParams['font.size'] = '16'
+plt.rcParams['font.size'] = '13'
 
 plt.figure(1)
 plt.xlabel('Coordinate $x [ \mu m]$')
@@ -92,8 +92,8 @@ plt.legend(fontsize = 12)
 
 
 plt.figure(2)
-plt.ylabel('Coordinate $x [ \mu m]$')
-plt.xlabel('Speed $V_x [ \mu m/ \mu s]$')
+plt.xlabel('Coordinate $x [ \mu m]$')
+plt.ylabel('Speed $V_x [ \mu m/ \mu s]$')
 plt.plot(x1_int,vx1_int, label = "particle 1", linewidth = 1, color = "r")
 plt.plot(x2_int,vx2_int, label = "particle 2", linewidth = 1, color = "k")
 plt.title("$(x, V_x)$ plane with interaction")
@@ -114,13 +114,13 @@ plt.legend(fontsize = 10)
 
 axs[1].plot(x1,vx1, label = "particle 1", linewidth = 1, color = "r")
 axs[1].plot(x2,vx2, label = "particle 2", linewidth = 1, color = "k")
-axs[1].set_title('Without interaction')
+axs[1].set_title('Without interaction', fontsize = 5)
 plt.xlabel('Coordinate $x [ \mu m]$')
 plt.ylabel('Speed $V_x [ \mu m/ \mu s]$')
 axs[1].legend()
 plt.show()
 
-plt.rcParams['font.size'] = '16'
+plt.rcParams['font.size'] = '10'
 
 plt.figure(3)
 plt.xlabel('Coordinate $z [ \mu m]$')
@@ -132,8 +132,8 @@ plt.legend(fontsize = 12)
 
 
 plt.figure(4)
-plt.ylabel('Coordinate $z [ \mu m]$')
-plt.xlabel('Speed $V_z [ \mu m/ \mu s]$')
+plt.xlabel('Coordinate $z [ \mu m]$')
+plt.ylabel('Speed $V_z [ \mu m/ \mu s]$')
 plt.plot(z1_int,vz1_int, label = "particle 1", linewidth = 0.5, color = "r")
 plt.plot(z2_int,vz2_int, label = "particle 2", linewidth = 0.5, color = "k")
 plt.title("$(z, V_z)$ plane with interaction")
