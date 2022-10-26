@@ -1,1 +1,1 @@
-"particle.hpp" is a header file for "particle" class. It takes charge q, mass m, coordinate $\vec{r}$
+"particle.hpp" is a header file for "particle" class. Here we define the constructor, this file does not have any functions. It takes charge $q$, mass $m$, coordinate $\vec{r}$ & velocity $\vec{v}$ of particle as input
