@@ -85,9 +85,9 @@ int main()
         }
     }
 
-    std::string filename = "RK4_table_500ms_100p_reso_int.csv";
+    std::string filename = "RK4_table_500ms_25p_reso_intt.csv";
     std::ofstream ofile;
-    ofile.open("RK4_table_500ms_100p_reso_int.csv"); 
+    ofile.open("RK4_table_500ms_25p_reso_intt.csv"); 
 
     ofile <<"n1, n2, n3, W" << std::endl;
 
