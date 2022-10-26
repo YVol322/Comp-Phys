@@ -1,3 +1,6 @@
+# This tables was generated withs programmes from "programmes" folder and used to plot figures from "figures folder".
+
+
 "FE_sol_4k.csv" is a .csv table that contains $x, y, z$ coordinates & time "t" (solutions of differential eqation by FE method) with time 
 $t_{total} = 50 [\mu s]$ and $N = 4000$ timesteps.
 
