@@ -4,7 +4,7 @@ from turtle import title
 import numpy as np
 from matplotlib import pyplot as plt 
 
-file = open("/Users/JVol/Documents/GitHub/comp-phys/project3/single_particle/RK4_sol_4k.csv")
+file = open("/Users/JVol/Documents/GitHub/comp-phys/project3/single_particle/tables/FE_sol_4k.csv")
 type(file)
 csvreader=csv.reader(file)
 header = []
@@ -26,7 +26,7 @@ for i in range(len(rows)):
 
 file.close()
 
-file = open("/Users/JVol/Documents/GitHub/comp-phys/project3/single_particle/analyt_sol_4k.csv")
+file = open("/Users/JVol/Documents/GitHub/comp-phys/project3/single_particle/tables/analyt_sol_4k.csv")
 type(file)
 csvreader=csv.reader(file)
 header = []
@@ -46,7 +46,7 @@ for i in range(len(rows)):
 
 file.close()
 
-file = open("/Users/JVol/Documents/GitHub/comp-phys/project3/single_particle/RK4_sol_8k.csv")
+file = open("/Users/JVol/Documents/GitHub/comp-phys/project3/single_particle/tables/FE_sol_8k.csv")
 type(file)
 csvreader=csv.reader(file)
 header = []
@@ -68,7 +68,7 @@ for i in range(len(rows)):
 
 file.close()
 
-file = open("/Users/JVol/Documents/GitHub/comp-phys/project3/single_particle/analyt_sol_8k.csv")
+file = open("/Users/JVol/Documents/GitHub/comp-phys/project3/single_particle/tables/analyt_sol_8k.csv")
 type(file)
 csvreader=csv.reader(file)
 header = []
@@ -88,7 +88,7 @@ for i in range(len(rows)):
 
 file.close()
 
-file = open("/Users/JVol/Documents/GitHub/comp-phys/project3/single_particle/RK4_sol_16k.csv")
+file = open("/Users/JVol/Documents/GitHub/comp-phys/project3/single_particle/tables/FE_sol_16k.csv")
 type(file)
 csvreader=csv.reader(file)
 header = []
@@ -110,7 +110,7 @@ for i in range(len(rows)):
 
 file.close()
 
-file = open("/Users/JVol/Documents/GitHub/comp-phys/project3/single_particle/analyt_sol_16k.csv")
+file = open("/Users/JVol/Documents/GitHub/comp-phys/project3/single_particle/tables/analyt_sol_16k.csv")
 type(file)
 csvreader=csv.reader(file)
 header = []
@@ -130,7 +130,7 @@ for i in range(len(rows)):
 
 file.close()
 
-file = open("/Users/JVol/Documents/GitHub/comp-phys/project3/single_particle/RK4_sol_32k.csv")
+file = open("/Users/JVol/Documents/GitHub/comp-phys/project3/single_particle/tables/FE_sol_32k.csv")
 type(file)
 csvreader=csv.reader(file)
 header = []
@@ -152,7 +152,7 @@ for i in range(len(rows)):
 
 file.close()
 
-file = open("/Users/JVol/Documents/GitHub/comp-phys/project3/single_particle/analyt_sol_32k.csv")
+file = open("/Users/JVol/Documents/GitHub/comp-phys/project3/single_particle/tables/analyt_sol_32k.csv")
 type(file)
 csvreader=csv.reader(file)
 header = []
