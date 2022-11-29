@@ -1,4 +1,4 @@
-Program "2x2.cpp" implements the MCMC Metropolis algorithm for 2D Ising model that has only 4 spins. This program outputs the mean values of energy per spin $<\epsilon>$, magnetization per spin $m$, second moment of energy per spin $<\epsilon^2>$, second moment of magnetization per spin $<m^2>$, heat capacity $C_V$ and susceptibility $\chi$ computed by MCMC method and compares it with analytical expressions that I had derived in the report. For the reason O not understand, 4 of 6 values do not match.
+Program "2x2.cpp" implements the MCMC Metropolis algorithm for 2D Ising model that has only 4 spins. This program outputs the mean values of energy per spin $<\epsilon>$, magnetization per spin $m$, second moment of energy per spin $<\epsilon^2>$, second moment of magnetization per spin $< m^2 >$, heat capacity $C_V$ and susceptibility $\chi$ computed by MCMC method and compares it with analytical expressions that I had derived in the report. For the reason O not understand, 4 of 6 values do not match.
 
 Compiling+running: 
 g++ -std=c++11 -c 2x2.cpp
